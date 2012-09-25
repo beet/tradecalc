@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  id: 1
+  member_id: 1
+  name: MyString
+  symbol: MyString
+  description: MyText
+  units: 1
+  purchase_price: 1.5
+  stop_loss_exit_price: 1.5
+  target_sale_price: 1.5
+
+two:
+  id: 2
+  member_id: 1
+  name: MyString
+  symbol: MyString
+  description: MyText
+  units: 1
+  purchase_price: 1.5
+  stop_loss_exit_price: 1.5
+  target_sale_price: 1.5

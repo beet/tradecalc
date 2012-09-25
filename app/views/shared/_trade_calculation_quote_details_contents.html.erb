@@ -1,0 +1,24 @@
+<fieldset class="form">
+  <legend>Quote <%= @trade_calculation.standard_quote.date %></legend>
+  <div class="row">
+    <label>Last trade</label>
+    <%= number_to_currency @trade_calculation.standard_quote.lastTrade %>
+  </div>
+  <div class="row">
+    <label>Open</label>
+    <%= number_to_currency @trade_calculation.standard_quote.open %>
+  </div>
+  <div class="row">
+    <label>High</label>
+    <%= number_to_currency @trade_calculation.standard_quote.dayHigh %>
+  </div>
+  <div class="row">
+    <label>Low</label>
+    <%= number_to_currency @trade_calculation.standard_quote.dayLow %>
+  </div>
+  <div class="row">
+    <label>Change</label>
+    <%= @trade_calculation.standard_quote.change %>
+  </div>
+  <p><big><%= link_to 'Charts &raquo;', member_trade_calculation_charts_path(:member_id => @current_member, :trade_calculation_id => @trade_calculation), {:target => '_charts'} %></big></p>
+</fieldset>

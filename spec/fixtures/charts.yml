@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  range: MyString
+  type: MyString
+  size: MyString
+  moving_averages: MyText
+  exponential_moving_averages: MyText
+  indicators: MyText
+  chart_overlays: MyText
+
+two:
+  range: MyString
+  type: MyString
+  size: MyString
+  moving_averages: MyText
+  exponential_moving_averages: MyText
+  indicators: MyText
+  chart_overlays: MyText

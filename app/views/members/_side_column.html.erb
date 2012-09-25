@@ -1,0 +1,6 @@
+<%= sidebar_add_button( "Sign up", signup_path ) if @current_member.blank? %>
+<% if @current_member.blank? %>
+<p><big><%= link_to "Log in",  login_path,  { :title => "Log in" } %></big></p>
+<p><big><%= link_to 'Contact', 'mailto:info@tradecalc.com' %></big></p>
+<% end %>
+<%= render :partial => 'shared/member_details_header' unless @current_member.blank? %>

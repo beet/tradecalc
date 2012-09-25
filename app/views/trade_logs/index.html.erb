@@ -1,0 +1,45 @@
+<h1><%= link_to 'Trade Calculations', member_trade_calculations_url(:member_id => @current_member) %> &raquo; <%= link_to @trade_calculation.name, member_trade_calculation_url(:member_id => @current_member, :id => @trade_calculation) %> &raquo; Trade Logs</h1>
+
+<h2>Trade log entries for <%= @trade_calculation.name %></h2>
+
+<% if @trade_logs.empty? %>
+
+<p>You haven't created any trade logs yet.</p>
+<p class="bigger"><%= link_to '✚ Click here', new_member_trade_calculation_trade_log_url(:member_id => @current_member, :trade_calculation_id => @trade_calculation) %> to create a new one now.</p>
+
+<% else %>
+
+<p class="bigger"><%= link_to '✚ Click here', new_member_trade_calculation_trade_log_url(:member_id => @current_member, :trade_calculation_id => @trade_calculation) %> to create a new trade log entry.</p>
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Action</th>
+    <th>Units</th>
+    <th>Price</th>
+    <th>Total</th>
+    <th>Actions</th>
+  </tr>
+  <% for log in @trade_logs do %>
+  <tr>
+    <td align="right"><%= log.date %></td>
+    <td align="center"><%= log.action %></td>
+    <td align="right"><%= log.units %></td>
+    <td align="right"><%= number_to_currency log.price %></td>
+    <td align="right"><%= number_to_currency log.total%></td>
+    <td align="center">
+      <%= link_to 'Edit', edit_member_trade_calculation_trade_log_path(:member_id => @current_member, :trade_calculation_id => @trade_calculation, :id => log) %>
+      <%= link_to 'Delete', member_trade_calculation_trade_log_path(:member_id => @current_member, :trade_calculation_id => @trade_calculation, :id => log), :method => :delete, :confirm => 'Are you sure you want to delete this log entry?' %>
+      <% unless log.notes.blank? %><%= link_to_function 'Notes', "alert('#{log.notes.gsub("'", "\'").gsub(/\n|\r/, '\n')}')" %><% end %>
+    </td>
+  </tr>
+  <% end %>
+  <tr>
+    <td colspan="4" align="right">Profit/Loss:</td>
+    <td align="right"><%= number_to_currency @trade_calculation.profit_loss %></td>
+    <td></td>
+  </tr>
+</table>
+
+<% end%>
+
+<p><%= link_to '&laquo; Click here', member_trade_calculation_path(:member_id => @current_member, :id => @trade_calculation) %> to return to <%= @trade_calculation.name %></p>

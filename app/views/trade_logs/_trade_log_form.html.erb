@@ -1,0 +1,34 @@
+<%= error_messages_for :trade_log %>
+<fieldset class="form">
+  <legend>Trade Log Details</legend>
+  <div class="row">
+    <%= f.label 'date' %>
+    <%= f.date_select 'date' %>&nbsp;
+    <%= link_to_function('Today', 'setTradeLogDateToToday()') unless @trade_log.new_record? %>
+  </div>
+  <div class="row">
+    <%= f.label 'action' %>
+    <%= f.select 'action', [ ['Please select:', ''], ['Buy', 'Buy'], ['Sell', 'Sell'] ] %>
+  </div>
+  <div class="row">
+    <%= f.label 'price' %>
+    <%= f.text_field 'price', :onchange => 'updateTradeLogForm()' %>&nbsp;
+    <%= link_to_function 'Auto', 'adjustTradeLogPriceToUnitsAndCost()', :title => 'Automatically adjust the price to the units and full cost' %>&nbsp;
+    <%= link_to_function 'Get quote', "setTradeLogPriceToQuote('#{@trade_calculation.symbol}')", :title => 'Set the price to a live quote' %>&nbsp;<%= image_tag '/images/ajax-loader.gif', :size => '16x11', :id => 'priceSpinner', :style => 'display:none' %>
+  </div>
+  <div class="row">
+    <%= f.label 'units' %>
+    <%= f.text_field 'units', :onchange => 'updateTradeLogForm()' %>&nbsp;
+    <%= link_to_function 'Auto', 'adjustTradeLogUnitsToPriceAndCost()', :title => 'Automatically adjust the units to the purchase price and full cost' %>
+  </div>
+  <div class="row">
+    <label for="fullCost">Full cost</label>
+    <span id="fullCost"></span>
+  </div>
+</fieldset>
+
+<fieldset class="form">
+  <legend>Notes</legend>
+  <p>Enter any Stop/Limit orders placed with this trade, and other general notes.</p>
+  <%= f.text_area 'notes', :cols => 80, :rows => 10 %>
+</fieldset>

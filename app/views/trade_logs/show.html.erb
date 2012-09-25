@@ -1,0 +1,10 @@
+<h1><%= link_to 'Trade Calculations', member_trade_calculations_url(:member_id => @current_member) %> &raquo; <%= link_to @trade_calculation.name, member_trade_calculation_url(:member_id => @current_member, :id => @trade_calculation) %> &raquo; <%= link_to 'Trade Logs', :action => 'index' %> &raquo; <%= link_to @trade_log.date, member_trade_calculation_trade_log_path(:member_id => @current_member, :trade_calculation_id => @trade_calculation, :id => @trade_log) %> &raquo; Edit</h1>
+
+<h2>Trade logged on <%= @trade_log.date %> for <%= @trade_calculation.name %></h2>
+
+<%= render :partial => 'trade_log_details' %>
+
+<div><%= button_to 'Edit &raquo;', edit_member_trade_calculation_trade_log_path(:member_id => @current_member, :trade_calculation_id => @trade_calculation, :id => @trade_log), :method => :get %></div>
+<br />
+
+<p><%= link_to '&laquo; Click here', :action => 'index' %> to return to the trade logs list</p>

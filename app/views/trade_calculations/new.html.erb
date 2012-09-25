@@ -1,0 +1,6 @@
+<h1><%= link_to 'Trade Calculations', member_trade_calculations_url( :member_id => @current_member ) %> &raquo; New</h1>
+
+<% form_for :trade_calculation, @trade_calculation, :url => member_trade_calculations_url( :member_id => @current_member), :method => :post do |f| %>
+  <%= render :partial => 'trade_calculation_form', :locals => {:f => f} %>
+  <%= submit_tag 'Save' %> or <%= link_to 'cancel', :action => 'index' %>
+<% end %>

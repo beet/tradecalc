@@ -1,0 +1,20 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+# validates_presence_of :date, :action, :units, :price, :total
+
+one:
+  id: 1
+  trade_calculation_id: 1
+  date: #{Date.now}
+  action: MyString
+  units: 1
+  price: 1.5
+  total: 1.5
+
+two:
+  id: 2
+  trade_calculation_id: 1
+  date: #{Date.now}
+  action: MyString
+  units: 1
+  price: 1.5
+  total: 1.5

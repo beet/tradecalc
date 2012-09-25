@@ -1,0 +1,11 @@
+<fieldset class="form">
+  <legend><%= link_to @current_member.name, edit_member_path(:id => @current_member) %></legend>
+  <div class="row">
+    <label for="trading_capital">Capital:</label>
+    <span id="trading_capital"><%= number_to_currency @current_member.trading_capital %></span>
+  </div>
+  <div class="row">
+    <label for="risk"><%= @current_member.risk_percentage %>% Risk:</label>
+    <span id="risk"><%= number_to_currency @current_member.risk %></span>
+  </div>
+</fieldset>

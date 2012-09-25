@@ -1,0 +1,8 @@
+<h1><%= link_to 'Members', :action => 'index' %> &raquo; Edit</h1>
+
+<h2>Editing your details</h2>
+
+<% form_for 'member', @current_member, :url => "/members/#{@member.id}", :html => {:method => :put} do |f| %>
+  <%= render :partial => 'member_form', :locals => {:f => f} %>
+  <%= submit_tag 'Save' %> or <%= link_to 'cancel', member_path(:id => @current_member) %>
+<% end %>

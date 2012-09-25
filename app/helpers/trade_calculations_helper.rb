@@ -1,0 +1,2 @@
+module TradeCalculationsHelper
+end

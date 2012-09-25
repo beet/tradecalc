@@ -1,0 +1,44 @@
+<h1>Trade Calculations</h1>
+
+<h2>Trade calculations for <%= @current_member.name %></h2>
+
+<% if @trade_calculations.empty? %>
+  
+  <p>You haven't created any trade calculations yet.</p>
+  <p><%= link_to '✚ Click here', new_member_trade_calculation_url( :member_id => @current_member ) %> to create one now</p>
+  
+<% else %>
+  
+  <p class="bigger"><%= link_to '✚ Click here', new_member_trade_calculation_url( :member_id => @current_member ) %> to create a new trade calculation</p>
+  
+  <table>
+    <tr>
+      <th>Name</th>
+      <!-- <th>Units</th>
+      <th>Purchase price</th>
+      <th>Stop loss exit</th>
+      <th>Risk</th>
+      <th>Target sale price</th>
+      <th>Target Profit</th> -->
+      <th>Current P/L</th>
+      <th>Actions</th>
+    </tr>
+    <% for trade_calculation in @trade_calculations do %>
+    <tr<%= ' class="bg"' if @trade_calculations.index(trade_calculation).modulo(2)==1 %>>
+      <td class="epicenter"><%= link_to trade_calculation.name, member_trade_calculation_url(:member_id => @current_member, :id => trade_calculation) %></td>
+      <!-- <td align="right"><%= link_to trade_calculation.units, member_trade_calculation_url(:member_id => @current_member, :id => trade_calculation) %></td>
+      <td align="right"><%= link_to number_to_currency( trade_calculation.purchase_price ), member_trade_calculation_url(:member_id => @current_member, :id => trade_calculation) %></td>
+      <td align="right"><%= link_to number_to_currency( trade_calculation.stop_loss_exit_price ), member_trade_calculation_url(:member_id => @current_member, :id => trade_calculation) %></td>
+      <td align="right"><%= link_to number_to_currency( trade_calculation.risk ), member_trade_calculation_url(:member_id => @current_member, :id => trade_calculation) %></td>
+      <td align="right"><%= link_to number_to_currency( trade_calculation.target_sale_price ), member_trade_calculation_url(:member_id => @current_member, :id => trade_calculation) %></td>
+      <td align="right"><%= link_to number_to_currency( trade_calculation.profit ), member_trade_calculation_url(:member_id => @current_member, :id => trade_calculation) %></td> -->
+      <td align="right"><%= link_to number_to_currency( trade_calculation.profit_loss ), member_trade_calculation_url(:member_id => @current_member, :id => trade_calculation) %></td>
+      <td align="center">
+        <%= link_to 'Trade Logs', member_trade_calculation_trade_logs_url(:member_id => @current_member, :trade_calculation_id => trade_calculation) %>
+        <%= link_to '<big>✍</big>', edit_member_trade_calculation_url(:member_id => @current_member, :id => trade_calculation) %>
+        <%= link_to '<big>✘</big>', member_trade_calculation_url(:member_id => @current_member, :id => trade_calculation), :method => :delete, :confirm => 'Are you sure you want to delete this trade calculation?' %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+<% end %>

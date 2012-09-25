@@ -1,0 +1,4 @@
+<%= render :partial => 'shared/member_details_header' %>
+<%= render :partial => 'shared/trade_calculation_details', :locals => {:f => @trade_calculation} %>
+
+<p><%= chart_link @trade_calculation %></p>

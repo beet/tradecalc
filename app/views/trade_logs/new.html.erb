@@ -1,0 +1,12 @@
+<h1><%= link_to 'Trade Calculations', member_trade_calculations_url(:member_id => @current_member) %> &raquo; <%= link_to @trade_calculation.name, member_trade_calculation_url(:member_id => @current_member, :id => @trade_calculation) %> &raquo; <%= link_to 'Trade Logs', :action => 'index' %> &raquo; New</h1>
+
+<h2>Creating a new trade log entry for <%= @trade_calculation.name %></h2>
+
+<% form_for 'trade_log', @trade_log, :url => member_trade_calculation_trade_logs_path(:member_id => @current_member, :trade_calculation_id => @trade_calculation) do |f| %>
+  <%= render :partial => 'trade_log_form', :locals => {:f => f} %>
+  <%= submit_tag 'Save' %> or <%= link_to 'cancel', :action => 'index' %>
+<% end %>
+
+<br />
+<%= render :partial => 'shared/trade_calculation_quote_details' %>
+

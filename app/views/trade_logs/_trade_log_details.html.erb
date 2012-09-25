@@ -1,0 +1,23 @@
+<fieldset class="form">
+  <legend>Trade Log Details</legend>
+  <div class="row">
+    <%= label 'trade_log', 'date' %>
+    <span id="trade_log_date"><%= @trade_log.date %></span>
+  </div>
+  <div class="row">
+    <%= label 'trade_log', 'action' %>
+    <span id="trade_log_action"><% color_if(@trade_log.action=='Buy', :green) do %><%= @trade_log.action %><% end %></span>
+  </div>
+  <div class="row">
+    <%= label 'trade_log', 'units' %>
+    <span id="trade_log_units"><%= @trade_log.units %></span>
+  </div>
+  <div class="row">
+    <%= label 'trade_log', 'price' %>
+    <span id="trade_log_price"><%= number_to_currency @trade_log.price %></span>
+  </div>
+  <div class="row">
+    <%= label 'trade_log', 'notes' %>
+    <div id="trade_log_notes" style="margin-left:27%"><%= simple_format @trade_log.notes %></div>
+  </div>
+</fieldset>

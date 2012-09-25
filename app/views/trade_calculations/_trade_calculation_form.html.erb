@@ -1,0 +1,68 @@
+<%= error_messages_for 'trade_calculation' %>
+
+<fieldset class="form">
+  <legend>Trade Calculation Details</legend>
+  <div class="row">
+    <%= f.label 'name' %>
+    <%= f.text_field 'name' %>
+  </div>
+  <div class="row">
+    <%= f.label :symbol %>
+    <%= f.text_field :symbol %>
+  </div>
+  <div class="row">
+    <%= f.label 'purchase_price' %>
+    <%= f.text_field 'purchase_price', :onchange => "updateTradeCalculationForm()" %>&nbsp;
+    <%= link_to_function 'Auto', 'adjustPurchasePriceToUnitsAndCost()', :title => 'Automatically adjust the purchase price to the units and full cost' %>&nbsp;
+    <%= link_to_function 'Get quote', 'setPurchasePriceToQuote()', :title => 'Set the purchase price to a live quote' %>&nbsp;<%= image_tag '/images/ajax-loader.gif', :size => '16x11', :id => 'purchasePriceSpinner', :style => 'display:none' %>
+  </div>
+  <div class="row">
+    <%= f.label 'units' %>
+    <%= f.text_field 'units', :onchange => "updateTradeCalculationForm()" %>&nbsp;
+    <%= link_to_function 'Auto', 'adjustUnitsToPriceAndCost()', :title => 'Automatically adjust the units to the purchase price and full cost' %>
+  </div>
+  <div class="row">
+    <%= f.label 'full_cost' %>
+    <span id="trade_calculation_full_cost"><%= number_to_currency @trade_calculation.full_cost %></span>
+  </div>
+</fieldset>
+
+<fieldset class="form">
+  <legend>Risk Calculations</legend>
+  <div class="row">
+    <%= f.label 'stop_loss_exit_price' %>
+    <%= f.text_field 'stop_loss_exit_price', :onchange => "updateTradeCalculationForm()" %>&nbsp;
+    <%= link_to_function 'Auto', "adjustStopLossExitToRisk(#{@current_member.risk})", :title => 'Automatically adjust stop loss exit to your risk profile' %>
+  </div>
+  <div class="row">
+    <%= f.label 'risk' %>
+    <span id="trade_calculation_risk"><%= number_to_currency @trade_calculation.risk %></span>
+  </div>
+</fieldset>
+
+<fieldset class="form">
+  <legend>Profit Calculations</legend>
+  <div class="row">
+    <%= f.label 'target_sale_price' %>
+    <%= f.text_field 'target_sale_price', :onchange => "updateTradeCalculationForm()" %>&nbsp;
+    <%= link_to_function 'Get quote', 'setSalePriceToQuote()', :title => 'Set the target sale price to a live quote' %>&nbsp;<%= image_tag '/images/ajax-loader.gif', :size => '16x11', :id => 'salePriceSpinner', :style => 'display:none' %>
+  </div>
+  <div class="row">
+    <%= f.label 'total_return' %>
+    <span id="trade_calculation_total_return"><%= number_to_currency @trade_calculation.total_return %></span>
+  </div>
+  <div class="row">
+    <%= f.label 'profit' %>
+    <span id="trade_calculation_profit"><%= number_to_currency @trade_calculation.profit %></span>
+  </div>
+  <div class="row">
+    <%= f.label 'return' %>
+    <span id="trade_calculation_return"><%= "%.2f" % @trade_calculation.percentage_return %>%</span>
+  </div>
+</fieldset>
+
+<fieldset class="form">
+  <legend>Notes</legend>
+  <p>Enter general notes, news items, and P&amp;F support/resistance levels here:</p>
+  <%= f.text_area 'notes', :rows => 30, :cols => 80 %>
+</fieldset>

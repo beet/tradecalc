@@ -1,0 +1,14 @@
+/* WRITE YOUR CSS CODE HERE */
+h1 a {color:#fff;}
+
+fieldset.form, h1, .msg {-moz-border-radius: 10px; border-radius: 10px;}
+fieldset legend {font-size:120%; font-weight:bold;}
+fieldset div.row { clear:left; padding:3px 5px !important; }
+fieldset div.row label { display:block; width:33%; float:left; clear:left; vertical-align: baseline; font-weight:bold; }
+fieldset div.row input {padding:3px; font:100%/1.5 "arial", sans-serif; position:relative; top:-5px;}
+.fieldWithErrors {color:red;}
+
+#content table {width:100%;}
+#content table th {font-size:120%; text-align:center;}
+
+blockquote {padding:1em; font-style:italic; color:#666;}

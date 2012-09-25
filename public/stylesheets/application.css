@@ -1,0 +1,114 @@
+/*
+      Created by Keith Donegan of Code-Sucks.com
+	  
+	  E-Mail: Keithdonegan@gmail.com
+	  
+	  You can do whatever you want with these layouts,
+	  but it would be greatly appreciated if you gave a link
+	  back to http://www.code-sucks.com
+	  
+*/
+
+* { padding: 0; margin: 0; }
+
+body {
+ font-family: Helvetica, Arial, sans-serif;
+ font-size: 13px;
+}
+#wrapper { 
+ margin: 0 auto;
+ width: 922px;
+}
+#faux {
+ background: url("/images/skin/faux-3-2-col.gif");
+ margin-bottom: 0px;
+ overflow: auto; /* Paul O Brien Fix for IE www.pmob.co.uk */
+ width: 100%
+}
+#header {
+ color: #333;
+ width: 902px;
+ padding: 10px;
+ height: 100px;
+ margin: 10px 0px 0px 0px;
+ background: #ABBEBE;
+}
+#leftcolumn { 
+ display: inline;
+ color: #333;
+ margin: 10px;
+ padding: 0px;
+ width: 195px;
+ float: left;
+}
+#rightcolumn { 
+ float: right;
+ color: #333;
+ margin: 10px;
+ padding: 0px;
+ width: 683px;
+ display: inline;
+ position: relative;
+}
+#footer { 
+ width: 902px;
+ clear: both;
+ color: #333;
+ background: #ABBEBE;
+ margin: 0px 0px 10px 0px;
+ padding: 10px;
+}
+.clear { clear: both; background: none; }
+
+
+p {margin-bottom:1em;}
+
+#header h1 {font-size:72px;letter-spacing:-5px;}
+#rightcolumn h2 {font-size:24px;letter-spacing:-1px;margin-bottom:0.5em;}
+#rightcolumn h3 {font-size:18px;letter-spacing:-1px;margin-bottom:0.5em;}
+
+fieldset.form {border:1px solid #999;padding:1em;margin-bottom:1em;}
+fieldset.form legend {font-size:26px;letter-spacing:-1px;padding:0 0.5em 0 0.5em;}
+#leftcolumn fieldset.form legend {font-size:18px;}
+fieldset.form .row {margin:0 0 1em 0;clear:left;float:left;width:100%;}
+fieldset.form .row label {font-weight:bold;letter-spacing:-1px;display:block;width:25%;float:left;margin:0 1em 0 0;color:#4C4C4C;}
+#leftcolumn fieldset.form .row label {width:33%;}
+.fieldWithErrors {
+  border:1px solid #F00;
+}
+#errorExplanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+#rightcolumn table {border-collapse:collapse;border:1px solid #999;margin:0 0 1em 0;padding:0;width:100%;}
+#rightcolumn table th {font-size:18px;letter-spacing:-1px;padding:0.5em;text-align:center;background:#CCC;color:#333;border-bottom:1px solid #999;border-left:1px solid #999;}
+#rightcolumn table td {padding:0.25em;border:1px solid #CCC;}
+
+.epicenter {font-size:18px;}
+
+.flash {margin:0 0 0.5em 0;padding:1em;font-size:18px;}
+.flash.notice {border:2px solid #408000;background:#DFFFCF;color:#408000;}
+

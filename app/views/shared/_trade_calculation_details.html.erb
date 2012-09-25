@@ -1,0 +1,55 @@
+<fieldset class="form">
+  <legend>Trade Calculation Details</legend>
+  <div class="row">
+    <%= label 'trade_calculation', 'name' %>
+    <span id="trade_calculation_name"><%= @trade_calculation.name %></span>
+  </div>
+  <div class="row">
+    <%= label 'trade_calculation', 'symbol' %>
+    <span id="trade_calculation_symbol"><%= @trade_calculation.symbol %></span>
+  </div>
+  <div class="row">
+    <%= label 'trade_calculation', 'units' %>
+    <span id="trade_calculation_units"><%= @trade_calculation.units %></span>
+  </div>
+  <div class="row">
+    <%= label 'trade_calculation', 'purchase_price', 'Price' %>
+    <span id="trade_calculation_purchase_price"><%= number_to_currency @trade_calculation.purchase_price %></span>
+  </div>
+  <div class="row">
+    <%= label 'trade_calculation', 'full_cost' %>
+    <span id="trade_calculation_full_cost"><%= number_to_currency @trade_calculation.full_cost %></span>
+  </div>
+</fieldset>
+
+<fieldset class="form">
+  <legend>Risk Calculations</legend>
+  <div class="row">
+    <%= label 'trade_calculation', 'stop_loss_exit_price', 'Stop loss' %>
+    <span id="trade_calculation_stop_loss_exit_price"><%= number_to_currency @trade_calculation.stop_loss_exit_price %></span>
+  </div>
+  <div class="row">
+    <%= label 'trade_calculation', 'risk' %>
+    <span id="trade_calculation_risk"><%= number_to_currency @trade_calculation.risk %></span>
+  </div>
+</fieldset>
+
+<fieldset class="form">
+  <legend>Profit Calculations</legend>
+  <div class="row">
+    <%= label 'trade_calculation', 'target_sale_price', 'Target' %>
+    <span id="trade_calculation_target_sale_price"><%= number_to_currency @trade_calculation.target_sale_price %></span>
+  </div>
+  <div class="row">
+    <%= label 'trade_calculation', 'total_return', 'Gross' %>
+    <span id="trade_calculation_total_return"><%= number_to_currency @trade_calculation.total_return %></span>
+  </div>
+  <div class="row">
+    <%= label 'trade_calculation', 'profit' %>
+    <span id="trade_calculation_profit"><%= number_to_currency @trade_calculation.profit %></span>
+  </div>
+  <div class="row">
+    <%= label 'trade_calculation', 'return' %>
+    <span id="trade_calculation_return"><%= "%.2f" % @trade_calculation.percentage_return %>%</span>
+  </div>
+</fieldset>

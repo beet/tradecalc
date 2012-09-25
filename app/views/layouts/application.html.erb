@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="content-language" content="en" />
+	<meta name="robots" content="noindex,nofollow" />
+  <%= stylesheet_link_tag %w(reset main style mystyle).collect {|s| '/adminiziolite/css/' + s} %>
+  <%= stylesheet_link_tag '/adminiziolite/css/2col', :title => '2col' %>
+  <%= stylesheet_link_tag '/adminiziolite/css/1col', :title => '1col' %>
+	<!--[if lte IE 6]><link rel="stylesheet" media="screen,projection" type="text/css" href="/adminiziolite/css/main-ie6.css" /><![endif]--> <!-- MSIE6 -->
+  <%= javascript_include_tag %w(jquery switcher toggle ui.core.js ui.tabs.js).collect {|j| '/adminiziolite/js/' + j} %>
+  <%= javascript_include_tag %w(prototype application) %>
+	<title><%= truncate(@page_title, :length => 65) || 'TradeCalc - Share trading calculator' %></title>
+	<% if RAILS_ENV=='production' %>
+  <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-23514654-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+  </script>
+  <% end %>
+</head>
+
+<body>
+
+<div id="main">
+
+	<!-- Tray -->
+	<div id="tray" class="box" style="displayz:none">
+
+		<p class="f-left box">
+
+			<!-- Switcher -->
+			<span class="f-left" id="switcher">
+				<a href="#" rel="1col" class="styleswitch ico-col1" title="Display one column"><img src="/adminiziolite/design/switcher-1col.gif" alt="1 Column" /></a>
+				<a href="#" rel="2col" class="styleswitch ico-col2" title="Display two columns"><img src="/adminiziolite/design/switcher-2col.gif" alt="2 Columns" /></a>
+			</span>
+
+			<strong>TradeCalc - Share trading calculator</strong>
+
+		</p>
+
+    <!-- <p class="f-right">User: <strong><a href="#">Administrator</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong><a href="#" id="logout">Log out</a></strong></p> -->
+    <p class="f-right">
+      <% if logged_in? -%>
+        <strong id="member-bar-greeting">Logged in as <%= link_to_current_member :content_method => :login %></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <strong id="member-bar-action"  ><%= link_to "Log out", logout_path, { :title => "Log out", :id => 'logout' } %></strong>
+      <% else -%>
+        <span id="member-bar-greeting"><%= link_to_login_with_IP 'Not logged in', :style => 'border: none;' %></span>
+        <span id="member-bar-action"  ><%= link_to "Log in",  login_path,  { :title => "Log in" } %> /
+                                     <%= link_to "Sign up", signup_path, { :title => "Create an account" } %></span>
+      <% end -%>
+    </p>
+
+	</div> <!--  /tray -->
+
+	<hr class="noscreen" />
+
+	<!-- Menu -->
+	<div id="menu" class="box">
+
+    <% if @current_member %>
+    <ul class="box f-right">
+      <li><a href="mailto:info@tradecalc.com"><span><strong>Contact</strong></span></a></li>
+    </ul>
+    <% end %>
+
+		<ul class="box">
+      <!-- <li<%= menu_active 'home' %>><a href="/"><span>Home</span></a></li> -->
+			<% if @current_member %>
+			<li<%= menu_active 'trade_calculations' %>><a href="<%= member_trade_calculations_path(:member_id => @current_member) %>"><span><%= @current_member.name %>'s Trade Calculations</span></a></li>
+			<% if @trade_calculation && !@trade_calculation.new_record? %>
+			<li<%= menu_active 'trade_logs' %>><a href="<%= member_trade_calculation_trade_logs_path(:member_id => @current_member, :trade_calculation_id => @trade_calculation) %>"><span><%= @trade_calculation.name %> Trade Logs</span></a></li>
+			<% end%>
+			<% end %>
+		</ul>
+
+	</div> <!-- /header -->
+
+	<hr class="noscreen" />
+
+	<!-- Columns -->
+	<div id="cols" class="box">
+
+		<!-- Aside (Left Column) -->
+		<div id="aside" class="box">
+
+			<div class="padding box">
+
+        <%= sidebar_add_button( 'New Trade Calculation', new_member_trade_calculation_url( :member_id => @current_member ) ) if @current_member %>
+        <%= sidebar_add_button( truncate( "Trade Log for #{@trade_calculation.name}", 20 ), new_member_trade_calculation_trade_log_url(:member_id => @current_member, :trade_calculation_id => @trade_calculation) ) if @current_member && @trade_calculation && !@trade_calculation.new_record? %>
+        <%= render_side_column %>
+
+			</div> <!-- /padding -->
+
+      <!-- <ul class="box">
+        <li<%= sidebar_menu_active 'trade_calculations' %>><a href="#">Trade Calculations</a></li>
+        <li<%= sidebar_menu_active 'trade_logs' %>><a href="#">Trade Logs</a></li>
+      </ul> -->
+
+		</div> <!-- /aside -->
+
+		<hr class="noscreen" />
+
+		<!-- Content (Right Column) -->
+		<div id="content" class="box">
+
+      <% if flash[:notice] %><p class="msg done"><%= flash[:notice] %></p><% end %>
+      <% if flash[:error] %><p class="msg error"><%= flash[:error] %></p><% end %>
+      <%= @content_for_layout %>
+
+		</div> <!-- /content -->
+
+	</div> <!-- /cols -->
+
+	<hr class="noscreen" />
+
+	<!-- Footer -->
+	<div id="footer" class="box">
+
+		<p class="f-left">&copy; 2011 <a href="#">Trade Calculations</a>, All Rights Reserved &reg;</p>
+
+		<p class="f-right">Templates by <a href="http://www.adminizio.com/">Adminizio</a></p>
+
+	</div> <!-- /footer -->
+
+</div> <!-- /main -->
+
+</body>
+</html>

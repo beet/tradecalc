@@ -1,0 +1,5 @@
+page.replace_html 'trade_calculation_full_cost', number_to_currency( @trade_calculation.full_cost )
+page.replace_html 'trade_calculation_risk', number_to_currency( @trade_calculation.risk )
+page.replace_html 'trade_calculation_total_return', number_to_currency( @trade_calculation.total_return )
+page.replace_html 'trade_calculation_profit', number_to_currency( @trade_calculation.profit )
+page.replace_html 'trade_calculation_return', "%.2f%" % @trade_calculation.percentage_return

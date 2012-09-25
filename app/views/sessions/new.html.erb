@@ -1,0 +1,19 @@
+<h1>Log In</h1>
+
+<% form_tag sessions_path do -%>
+<fieldset class="form">
+  <div class="row">
+    <%= label_tag 'login' %>
+    <%= text_field_tag 'login', @login %>
+  </div>  
+  <div class="row">
+    <%= label_tag 'password' %>
+    <%= password_field_tag 'password', nil %>
+  </div>  
+  <div class="row">
+    <%= label_tag 'remember_me', 'Remember me' %>
+    <%= check_box_tag 'remember_me', '1', @remember_me %>
+  </div>  
+</fieldset>
+<p><%= submit_tag 'Log in' %></p>
+<% end -%>

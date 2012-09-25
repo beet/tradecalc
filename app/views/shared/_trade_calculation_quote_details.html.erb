@@ -1,0 +1,7 @@
+<fieldset class="form" id="quoteContents">
+  <legend>Quote</legend>
+  <p>Loading quote data from YahooFinance&nbsp;<%= image_tag '/images/ajax-loader.gif', :size => '16x11' %></p>
+</fieldset>
+<%= javascript_tag remote_function( :url => {:controller => 'trade_calculations', :action => 'show_latest_quote', :id => @trade_calculation}, 
+                                    :update => :quoteContents,
+                                    :failure => "alert('HTTP Error ' + request.status + '!')" ) %>

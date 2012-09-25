@@ -1,0 +1,2 @@
+module TradeLogsHelper
+end

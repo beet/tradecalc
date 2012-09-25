@@ -1,0 +1,19 @@
+<h1><%= link_to 'Trade Calculations', member_trade_calculations_url(:member_id => @current_member) %> &raquo; <%= @trade_calculation.name %></h1>
+
+<p class="bigger"><%= link_to 'Click here', member_trade_calculation_trade_logs_path(:member_id => @current_member, :trade_calculation_id => @trade_calculation) %> to view trade logs for <%= @trade_calculation.name %> &raquo;</p>
+
+<div class="epicenter"><%= button_to 'Edit &raquo;', edit_member_trade_calculation_path(:member_id => @current_member, :id => @trade_calculation), :method => :get %></div>
+
+<%= render :partial => 'shared/trade_calculation_details', :locals => {:f => @trade_calculation} %>
+
+<%= render :partial => 'shared/trade_calculation_quote_details' %>
+
+<fieldset class="form">
+  <legend>Notes:</legend>
+  <%= textilize @trade_calculation.notes %>
+</fieldset>
+
+<div class="epicenter"><%= button_to 'Edit &raquo;', edit_member_trade_calculation_path(:member_id => @current_member, :id => @trade_calculation), :method => :get %></div>
+<br />
+
+<p><%= link_to '&laquo; Click here', :action => 'index' %> to return to the trade calculations list</p>

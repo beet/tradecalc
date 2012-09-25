@@ -1,0 +1,2 @@
+page.call 'setPurchasePrice', @purchase_price
+page.call 'updateTradeCalculationForm'
