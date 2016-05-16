@@ -21,7 +21,7 @@ class ChartsController < ApplicationController
   private
   
     def default_chart_options
-      { 'size' => 'l', 'chart_type' => 'b', 'range' => '3m', 'moving_averages' => [], 'exponential_moving_averages' => [], 'indicators' => [], 'chart_overlays' => [] }
+      { 'size' => 'l', 'chart_type' => 'b', 'range' => '3m', 'moving_averages' => {}, 'exponential_moving_averages' => {}, 'indicators' => {}, 'chart_overlays' => {} }
     end
     
     def process_chart_status

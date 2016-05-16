@@ -10,23 +10,27 @@
    <p>
       <strong>MMA</strong>:&nbsp;
       <% YahooFinanceCharts::Base.mma_options.each do |name, value| %>
-        <%= name %> <%= check_box_tag "chart[moving_averages][#{value}]", true, @chart.moving_averages.include?(value) %>&nbsp;&nbsp;
+        <%= hidden_field_tag "chart[moving_averages][#{value}]", false %>
+        <%= name %> <%= check_box_tag "chart[moving_averages][#{value}]", true, @chart.checkbox_selected?(:moving_averages, value) %>&nbsp;&nbsp;
       <% end %>&nbsp;&nbsp;
       <strong>EMA</strong>:&nbsp;
       <% YahooFinanceCharts::Base.ema_options.each do |name, value| %>
-        <%= name %> <%= check_box_tag "chart[exponential_moving_averages][#{value}]", true, @chart.exponential_moving_averages.include?(value) %>&nbsp;&nbsp;
+        <%= hidden_field_tag "chart[exponential_moving_averages][#{value}]", false %>
+        <%= name %> <%= check_box_tag "chart[exponential_moving_averages][#{value}]", true, @chart.checkbox_selected?(:exponential_moving_averages, value) %>&nbsp;&nbsp;
       <% end %>&nbsp;&nbsp;
    </p>
    <p>
     <strong>Indicators:</strong>&nbsp;
     <% YahooFinanceCharts::Base.indicator_options.each do |name, value| %>
-      <%= name %> <%= check_box_tag "chart[indicators][#{value}]", true, @chart.indicators.include?(value) %>&nbsp;&nbsp;
+      <%= hidden_field_tag "chart[indicators][#{value}]", false %>
+      <%= name %> <%= check_box_tag "chart[indicators][#{value}]", true, @chart.checkbox_selected?(:indicators, value) %>&nbsp;&nbsp;
     <% end %>&nbsp;&nbsp;
    </p>
    <p>
     <strong>Overlays:</strong>&nbsp;
     <% YahooFinanceCharts::Base.overlay_options.each do |name, value| %>
-      <%= name %> <%= check_box_tag "chart[chart_overlays][#{value}]", true, @chart.chart_overlays.include?(value) %>&nbsp;&nbsp;
+      <%= hidden_field_tag "chart[chart_overlays][#{value}]", false %>
+      <%= name %> <%= check_box_tag "chart[chart_overlays][#{value}]", true, @chart.checkbox_selected?(:chart_overlays, value) %>&nbsp;&nbsp;
     <% end %>&nbsp;&nbsp;
    </p>
   <%= submit_tag 'Save' %> or <%= link_to_function 'cancel', "Element.toggle('chartSettings');Element.toggle('changeSettingsLink')" %>

@@ -1,3 +1,7 @@
 <%= render :partial => 'shared/member_details_header' %>
 
-<p><%= chart_link( @trade_calculation ) if @trade_calculation.present? %></p>
+<% if @trade_calculation.try(:created_at?) %>
+  <p><%= link_to "Charts", member_trade_calculation_charts_path(:member_id => @current_member, :trade_calculation_id => @trade_calculation), {:target => "_charts_#{@trade_calculation.id}", :title => "View charts for #{@trade_calculation.name}"} %></p>
+
+  <p><%= chart_link( @trade_calculation ) %></p>
+<% end %>
