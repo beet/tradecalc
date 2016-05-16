@@ -1,3 +1,20 @@
+// CSRF token vulnerability fix
+try {
+  AUTH_TOKEN = $$('meta[name="csrf-token"]')[0].readAttribute('content');
+  console.log(AUTH_TOKEN);
+} catch (e) {
+  throw "Unable to set CSRF authenticity token for non GET AJAX requests"
+}
+
+Object.toQueryString = function (object) {
+  var result =  $H(object).toQueryString();
+  if (!result.include ("authenticity_token")) {
+    result += "&authenticity_token=" + encodeURIComponent (AUTH_TOKEN);
+  }
+  return result;
+}
+
+
 function updateTradeCalculationForm() {
   units = getUnits();
   purchase_price = getPurchasePrice();

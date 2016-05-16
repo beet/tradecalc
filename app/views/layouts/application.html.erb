@@ -5,6 +5,7 @@
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta http-equiv="content-language" content="en" />
 	<meta name="robots" content="noindex,nofollow" />
+  <%= csrf_meta_tag %>
   <%= stylesheet_link_tag %w(reset main style mystyle).collect {|s| '/adminiziolite/css/' + s} %>
   <%= stylesheet_link_tag '/adminiziolite/css/2col', :title => '2col' %>
   <%= stylesheet_link_tag '/adminiziolite/css/1col', :title => '1col' %>
