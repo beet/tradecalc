@@ -17,18 +17,22 @@ config.action_view.cache_template_loading            = true
 
 # Use a different cache store in production
 # memcached
-require 'memcache'
-CACHE = MemCache.new
-CACHE.servers = '127.0.0.1:11211'
-config.action_controller.session = {
-  :session_key => "_trade_calc_memcached",
-  :secret => "someloadofoldbollocksandsuch12",
-  :cache => CACHE,
-  :expires => 86400 # 24 hour session expirey...
-}
-memcache_servers = [ '127.0.0.1:11211' ]
-config.action_controller.session_store = :mem_cache_store
-config.cache_store = :mem_cache_store, '127.0.0.1:11211'
+# require 'memcache'
+# CACHE = MemCache.new
+# CACHE.servers = '127.0.0.1:11211'
+# config.action_controller.session = {
+#   :session_key => "_trade_calc_memcached",
+#   :secret => "someloadofoldbollocksandsuch12",
+#   :cache => CACHE,
+#   :expires => 86400 # 24 hour session expirey...
+# }
+# memcache_servers = [ '127.0.0.1:11211' ]
+# config.action_controller.session_store = :mem_cache_store
+# config.cache_store = :mem_cache_store, '127.0.0.1:11211'
+
+# Need to put in a credit card to use the free memcache server on Heroku, so
+# just using a plain memory store
+config.cache_store = :memory_store
 
 # Enable serving of images, stylesheets, and javascripts from an asset server
 # config.action_controller.asset_host = "http://assets.example.com"
